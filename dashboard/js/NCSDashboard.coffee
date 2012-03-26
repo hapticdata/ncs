@@ -1,4 +1,6 @@
 # NCSDashboard
+socket = null
+messageCount = 0
 
 $ ()->
 	console.log "Hello, NCSDashboard."
@@ -8,7 +10,27 @@ $ ()->
 	dashboard.addWidgetClass WidgetBoolean
 	dashboard.addWidgetClass WidgetString
 	dashboard.addWidgetClass Widget
-	new Sender(dashboard)
+
+	#create dummy sender
+	#new Sender(dashboard)
+
+
+	#connect to ncs
+	socket = io.connect 'http://localhost:8080'
+
+	socket.on 'hello', (_data)->
+		dashboard.receive 'hello', _data
+	
+	socket.on 'message', (_data) ->
+		_data = JSON.parse _data
+		dashboard.receive _data.key, _data.value
+
+
+	$('#send-mouse').click (_e)->
+		$('html').mousemove (_e)->
+			socket.send JSON.stringify {key: "mouseX", value: _e.pageX}
+			socket.send JSON.stringify {key: "mouseY", value: _e.pageY}
+
 
 class Sender
 	constructor: (@dashboard) ->

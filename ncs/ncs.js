@@ -24,15 +24,15 @@
   */
 
   socketHandler = function(_socket) {
-    console.log('new connection');
-    _socket.emit('hello', 'hello');
-    _socket.on('message', function(_data) {
+    console.log('new connection', _socket);
+    _socket.send(JSON.stringify({
+      name: 'ncs',
+      key: 'hello',
+      value: 'hello'
+    }));
+    return _socket.on('message', function(_data) {
       console.log('message', _data);
       return io.sockets.send(_data);
-    });
-    return _socket.on('echo', function(_data) {
-      console.log('echo', _data);
-      return _socket.emit('echo', _data);
     });
   };
 
@@ -54,9 +54,9 @@
     }
     console.log("file:", filePath);
     filePath = fs.realpathSync(filePath);
-    if (!startsWith(__dirname + '/test/', filePath)) {
+    if ((!startsWith(__dirname + '/test/', filePath)) && (!startsWith(__dirname + '/client/', filePath))) {
       console.log('forbidden');
-      _res.writeHead(500);
+      _res.writeHead(403);
       return _res.end('forbidden');
     }
     return fs.readFile(filePath, function(_err, _data) {

@@ -1,35 +1,25 @@
 (function() {
-  var count, echoStart, every, screenLog;
-
-  count = 0;
-
-  echoStart = null;
+  var screenLog;
 
   $(function() {
-    var socket;
-    socket = io.connect('http://localhost:8080');
-    socket.on('hello', function(_data) {
-      return screenLog('received hello: ' + _data);
-    });
-    socket.on('echo', function(_data) {
+    console.log("start");
+    ncs.connect('localhost:8080', "ncs_test");
+    ncs.onreceive(function(_key, _value) {
       var time;
-      time = Date.now() - echoStart;
-      screenLog('received echo: ' + _data);
-      return screenLog("took: " + time + "ms");
+      if (_key === 'hello') screenLog('received hello: ' + _value);
+      if (_key === 'echo') {
+        time = Date.now() - _value;
+        return screenLog("received echo(" + _value + ") in " + time + "ms");
+      }
     });
     return $("#send").click(function(event) {
-      screenLog('sending echo: ' + count);
-      echoStart = Date.now();
-      return socket.emit('echo', count++);
+      screenLog('sending echo: testing');
+      return ncs.send('echo', Date.now());
     });
   });
 
   screenLog = function(_value) {
     return $("#console").append($("<div>" + (_value.toString()) + "</div>"));
-  };
-
-  every = function(_ms, _func) {
-    return setInterval(_func, _ms);
   };
 
 }).call(this);

@@ -18,16 +18,12 @@ start = ()->
 This is the NCS server.
 ###
 socketHandler = (_socket)->
-	console.log 'new connection'
-	_socket.emit 'hello', 'hello'
+	console.log 'new connection', _socket
+	_socket.send JSON.stringify {name: 'ncs', key: 'hello', value: 'hello'}
 	
 	_socket.on 'message', (_data)->
 		console.log 'message', _data
 		io.sockets.send _data
-
-	_socket.on 'echo', (_data)->
-		console.log 'echo', _data
-		_socket.emit 'echo', _data
 
 
 
@@ -49,9 +45,9 @@ httpHandler = (_req, _res)->
 	console.log "file:", filePath
 
 	filePath = fs.realpathSync(filePath)
-	if !startsWith __dirname + '/test/', filePath
+	if (!startsWith __dirname + '/test/', filePath) && (!startsWith __dirname + '/client/', filePath)
 		console.log 'forbidden'
-		_res.writeHead 500
+		_res.writeHead 403
 		return _res.end 'forbidden'
 
 	fs.readFile filePath, (_err, _data)->

@@ -11,28 +11,22 @@ $ ()->
 	dashboard.addWidgetClass WidgetString
 	dashboard.addWidgetClass Widget
 
-	#create dummy sender
-	#new Sender(dashboard)
-
+	#create dummy LocalSender
+	#new LocalSender(dashboard)
 
 	#connect to ncs
-	socket = io.connect 'http://localhost:8080'
+	ncs.connect 'localhost:8080', 'ncs_test'
 
-	socket.on 'hello', (_data)->
-		dashboard.receive 'hello', _data
-	
-	socket.on 'message', (_data) ->
-		_data = JSON.parse _data
-		dashboard.receive _data.key, _data.value
-
+	ncs.onreceive (_key, _value)->
+		dashboard.receive _key, _value
 
 	$('#send-mouse').click (_e)->
 		$('html').mousemove (_e)->
-			socket.send JSON.stringify {key: "mouseX", value: _e.pageX}
-			socket.send JSON.stringify {key: "mouseY", value: _e.pageY}
+			ncs.send "mouseX", _e.pageX
+			ncs.send "mouseY", _e.pageY
 
 
-class Sender
+class LocalSender
 	constructor: (@dashboard) ->
 		@startTime = Date.now()
 		@temperature = 20

@@ -1,20 +1,19 @@
-echoStart = null
-
 #start
 $ ()->
-	socket = io.connect 'http://localhost:8080'
+	console.log "start"
+	ncs.connect 'localhost:8080', "ncs_test"
 	
-	socket.on 'hello', (_data)->
-		screenLog 'received hello: ' + _data
-	
-	socket.on 'echo', (_data)->
-		time = Date.now() - echoStart
-		screenLog """received echo(#{_data}) in #{time}ms"""
+	ncs.onreceive (_key, _value)->
+		if _key == 'hello'
+			screenLog 'received hello: ' + _value
+
+		if _key == 'echo'
+			time = Date.now() - _value
+			screenLog """received echo(#{_value}) in #{time}ms"""
 
 	$("#send").click (event)->
-		screenLog 'sending echo: ' + count
-		echoStart = Date.now()
-		socket.emit 'echo', count++
+		screenLog 'sending echo: testing'
+		ncs.send 'echo', Date.now()
 
 #util
 screenLog = (_value)->

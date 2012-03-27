@@ -1,5 +1,5 @@
 (function() {
-  var NCSDashboard, Sender, Widget, WidgetBoolean, WidgetColor, WidgetFloat, WidgetString, after, clamp, every, isNumber, isTrue, mapRange, messageCount, random, round, socket,
+  var LocalSender, NCSDashboard, Widget, WidgetBoolean, WidgetColor, WidgetFloat, WidgetString, after, clamp, every, isNumber, isTrue, mapRange, messageCount, random, round, socket,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
@@ -16,31 +16,21 @@
     dashboard.addWidgetClass(WidgetBoolean);
     dashboard.addWidgetClass(WidgetString);
     dashboard.addWidgetClass(Widget);
-    socket = io.connect('http://localhost:8080');
-    socket.on('hello', function(_data) {
-      return dashboard.receive('hello', _data);
-    });
-    socket.on('message', function(_data) {
-      _data = JSON.parse(_data);
-      return dashboard.receive(_data.key, _data.value);
+    ncs.connect('localhost:8080', 'ncs_test');
+    ncs.onreceive(function(_key, _value) {
+      return dashboard.receive(_key, _value);
     });
     return $('#send-mouse').click(function(_e) {
       return $('html').mousemove(function(_e) {
-        socket.send(JSON.stringify({
-          key: "mouseX",
-          value: _e.pageX
-        }));
-        return socket.send(JSON.stringify({
-          key: "mouseY",
-          value: _e.pageY
-        }));
+        ncs.send("mouseX", _e.pageX);
+        return ncs.send("mouseY", _e.pageY);
       });
     });
   });
 
-  Sender = (function() {
+  LocalSender = (function() {
 
-    function Sender(dashboard) {
+    function LocalSender(dashboard) {
       var _this = this;
       this.dashboard = dashboard;
       this.startTime = Date.now();
@@ -67,7 +57,7 @@
       });
     }
 
-    return Sender;
+    return LocalSender;
 
   })();
 

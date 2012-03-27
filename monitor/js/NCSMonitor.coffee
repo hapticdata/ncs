@@ -1,10 +1,10 @@
-# NCSDashboard
+# NCSMonitor
 socket = null
 messageCount = 0
 
 $ ()->
-	console.log "Hello, NCSDashboard."
-	dashboard = new NCSDashboard($(".NCSDashboard")[0])
+	console.log "Hello, NCSMonitor."
+	dashboard = new NCSMonitor($(".NCSMonitor")[0])
 	dashboard.addWidgetClass WidgetColor
 	dashboard.addWidgetClass WidgetFloat
 	dashboard.addWidgetClass WidgetBoolean
@@ -44,7 +44,7 @@ class LocalSender
 		every 33, () =>
 			@dashboard.receive "mouseY", Math.cos((Date.now() - @startTime)/1000.0) * 384 + 384
 
-class NCSDashboard
+class NCSMonitor
 	constructor: (_elem) ->
 		@elem = $(_elem)
 		@elem.empty()

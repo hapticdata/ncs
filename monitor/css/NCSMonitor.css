@@ -161,7 +161,7 @@ header {
   padding: .5em;
   margin: 1em;
 }
-div.NCSDashboard {
+div.NCSMonitor {
   -moz-box-flex: 1;
   -webkit-box-flex: 1;
   box-flex: 1;

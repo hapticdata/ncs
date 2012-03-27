@@ -1,5 +1,5 @@
 (function() {
-  var LocalSender, NCSDashboard, Widget, WidgetBoolean, WidgetColor, WidgetFloat, WidgetString, after, clamp, every, isNumber, isTrue, mapRange, messageCount, random, round, socket,
+  var LocalSender, NCSMonitor, Widget, WidgetBoolean, WidgetColor, WidgetFloat, WidgetString, after, clamp, every, isNumber, isTrue, mapRange, messageCount, random, round, socket,
     __hasProp = Object.prototype.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
 
@@ -9,8 +9,8 @@
 
   $(function() {
     var dashboard;
-    console.log("Hello, NCSDashboard.");
-    dashboard = new NCSDashboard($(".NCSDashboard")[0]);
+    console.log("Hello, NCSMonitor.");
+    dashboard = new NCSMonitor($(".NCSMonitor")[0]);
     dashboard.addWidgetClass(WidgetColor);
     dashboard.addWidgetClass(WidgetFloat);
     dashboard.addWidgetClass(WidgetBoolean);
@@ -61,9 +61,9 @@
 
   })();
 
-  NCSDashboard = (function() {
+  NCSMonitor = (function() {
 
-    function NCSDashboard(_elem) {
+    function NCSMonitor(_elem) {
       this.elem = $(_elem);
       this.elem.empty();
       this.elem.append("<div class=\"column\" />");
@@ -73,12 +73,12 @@
       this.widgets = {};
     }
 
-    NCSDashboard.prototype.receive = function(_key, _value) {
+    NCSMonitor.prototype.receive = function(_key, _value) {
       if (!this.widgets[_key]) this.widgets[_key] = this.widgetForValue(_value);
       return this.widgets[_key].update(_key, _value);
     };
 
-    NCSDashboard.prototype.widgetForValue = function(_value) {
+    NCSMonitor.prototype.widgetForValue = function(_value) {
       var widgetClass, _i, _len, _ref;
       _ref = this.widgetClasses;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -89,11 +89,11 @@
       }
     };
 
-    NCSDashboard.prototype.addWidgetClass = function(_widget) {
+    NCSMonitor.prototype.addWidgetClass = function(_widget) {
       return this.widgetClasses.push(_widget);
     };
 
-    return NCSDashboard;
+    return NCSMonitor;
 
   })();
 

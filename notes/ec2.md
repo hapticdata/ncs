@@ -26,6 +26,9 @@ I'm using OS X
 		export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
 
 * Hope you have java?
+
+As it happens, I did have java the first time I did this, but not on a clean install of OS X Lion. Atempting to run `/usr/bin/java -v` prompted OS X to ask and install it.
+
 * Setup a key pair for ssh-ing with the ec2 tools
 	* ec2-add-keypair pstam-keypair
 	* paste the contents of the private key into a new file "id_rsa-pstam-keypair" (You want the lines with ===== and everything in between)
@@ -47,10 +50,11 @@ AMI's are full OS images, from which you can initialize your EC2 instance. For t
 		
 		ec2-describe-instances
 
-* Open a port for ssh, might as well get 80 for http as well (At this point http:// doesn't work. There is no web server... yet.)
+* Open a port for ssh, might as well get 80 for http as well (At this point http:// doesn't work. There is no web server... yet.) Also opening 8080, which i like to use for node tests.
 
 		ec2-authorize default -p 22 
 		ec2-authorize default -p 80
+		ec2-authorize default -p 8080
 
 
 Take a Look Around

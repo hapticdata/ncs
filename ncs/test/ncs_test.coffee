@@ -1,4 +1,3 @@
-count = 0
 echoStart = null
 
 #start
@@ -10,22 +9,15 @@ $ ()->
 	
 	socket.on 'echo', (_data)->
 		time = Date.now() - echoStart
-		screenLog 'received echo: ' + _data
-		screenLog """took: #{time}ms"""
+		screenLog """received echo(#{_data}) in #{time}ms"""
 
 	$("#send").click (event)->
 		screenLog 'sending echo: ' + count
 		echoStart = Date.now()
 		socket.emit 'echo', count++
 
-	
-
-
-#utils
-
+#util
 screenLog = (_value)->
 	$("#console").append $ """<div>#{_value.toString()}</div>"""
 
-every = (_ms, _func)->
-	return setInterval _func, _ms
 

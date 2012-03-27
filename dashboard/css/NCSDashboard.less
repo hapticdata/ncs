@@ -1,5 +1,4 @@
 // NCSDashboard
-@import "bootstrap.less";
 @import "reset.less";
 
 @color-page: #333;
@@ -38,8 +37,8 @@ body
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	#flexbox .display-box;
-	#flexbox .box-orient(vertical);
+	.display-box;
+	.box-orient(vertical);
 }
 
 header
@@ -50,9 +49,9 @@ header
 
 div.NCSDashboard
 {
-	#flexbox .box-flex(1);
-	#flexbox .display-box;
-	#flexbox .box-orient(horizontal);
+	.box-flex(1);
+	.display-box;
+	.box-orient(horizontal);
 	margin: 0em 1em 1em 1em;
 	/*-webkit-transform lowers proc usage by pushing some rendering to the gpu, results may vary*/
 	-webkit-transform: translateZ(0); 
@@ -60,7 +59,7 @@ div.NCSDashboard
 
 div.column
 {
-	#flexbox .box-flex(1);
+	.box-flex(1);
 	width: 100%;
 	
 	margin-right: 1em;
@@ -162,4 +161,71 @@ div.widget .custom.string
 	width: 1em;
 	background-color: red;
 	&.on { background-color: green; }
+}
+
+
+
+
+// ////////////////////////////////////////////////
+// Util
+// w/ thanks to http://markdotto.com/bootstrap/
+
+
+.display-box { 
+	display: -moz-box;
+	display: -webkit-box;
+	display: box;
+}
+
+.box-align(@param: stretch) {
+	-moz-box-align: @param;
+	-webkit-box-align: @param;
+	box-align: @param;
+}
+
+.box-direction(@param: normal) {
+	-moz-box-direction: @param;
+	-webkit-box-direction: @param;
+	box-direction: @param;
+}
+
+.box-flex(@param: 0) {
+	-moz-box-flex: @param;
+	-webkit-box-flex: @param;
+	box-flex: @param;
+}
+
+.box-flex-group(@param: 1) {
+	-moz-box-flex-group: @param;
+	-webkit-box-flex-group: @param;
+	box-flex-group: @param;
+}
+
+.box-orient(@param: horizontal) {
+	-moz-box-orient: @param;
+	-webkit-box-orient: @param;
+	box-orient: @param;
+}
+
+.box-ordinal-group(@param: 1) {
+	-moz-box-ordinal-group: @param;
+	-webkit-box-ordinal-group:@param;
+	box-flex-ordinal-group: @param;
+}
+
+.box-pack(@param: start) {
+	-moz-box-pack: @param;
+	-webkit-box-pack: @param;
+	box-pack: @param;
+}
+
+.clearfix {
+	zoom: 1;
+	&:after {
+		display: block;
+		visibility: hidden;
+		height: 0;
+		clear: both;
+		content: ".";
+	}
 }

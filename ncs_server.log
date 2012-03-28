@@ -1,0 +1,115 @@
+info: socket.io started
+debug: client authorized
+info: handshake authorized 17542848241736816714
+debug: setting request GET /socket.io/1/websocket/17542848241736816714
+debug: set heartbeat interval for client 17542848241736816714
+debug: client authorized for 
+debug: websocket writing 1::
+new connection { id: '17542848241736816714',
+  namespace: 
+   { manager: 
+      { server: [Object],
+        namespaces: [Object],
+        sockets: [Circular],
+        _events: [Object],
+        settings: [Object],
+        handshaken: [Object],
+        connected: [Object],
+        open: [Object],
+        closed: {},
+        rooms: [Object],
+        roomClients: [Object],
+        oldListeners: [Object],
+        gc: [Object] },
+     name: '',
+     sockets: { '17542848241736816714': [Circular] },
+     auth: false,
+     flags: { endpoint: '', exceptions: [] },
+     _events: { connection: [Object] } },
+  manager: 
+   { server: 
+      { connections: 2,
+        allowHalfOpen: true,
+        _handle: [Object],
+        _events: [Object],
+        httpAllowHalfOpen: false },
+     namespaces: { '': [Object] },
+     sockets: 
+      { manager: [Circular],
+        name: '',
+        sockets: [Object],
+        auth: false,
+        flags: [Object],
+        _events: [Object] },
+     _events: 
+      { 'set:transports': [Object],
+        'set:store': [Function],
+        'set:origins': [Function],
+        'set:flash policy port': [Function] },
+     settings: 
+      { origins: '*:*',
+        log: true,
+        store: [Object],
+        logger: [Object],
+        static: [Object],
+        heartbeats: true,
+        resource: '/socket.io',
+        transports: [Object],
+        authorization: false,
+        blacklist: [Object],
+        'log level': 3,
+        'log colors': false,
+        'close timeout': 60,
+        'heartbeat interval': 25,
+        'heartbeat timeout': 60,
+        'polling duration': 20,
+        'flash policy server': true,
+        'flash policy port': 10843,
+        'destroy upgrade': true,
+        'destroy buffer size': 100000000,
+        'browser client': true,
+        'browser client cache': true,
+        'browser client minification': false,
+        'browser client etag': false,
+        'browser client expires': 315360000,
+        'browser client gzip': false,
+        'browser client handler': false,
+        'client store expiration': 15,
+        'match origin protocol': false },
+     handshaken: { '17542848241736816714': [Object] },
+     connected: { '17542848241736816714': true },
+     open: { '17542848241736816714': true },
+     closed: {},
+     rooms: { '': [Object] },
+     roomClients: { '17542848241736816714': [Object] },
+     oldListeners: [ [Function] ],
+     gc: { ontimeout: [Function] } },
+  disconnected: false,
+  ackPackets: 0,
+  acks: {},
+  flags: { endpoint: '', room: '' },
+  readable: true,
+  store: 
+   { store: { options: undefined, clients: [Object], manager: [Object] },
+     id: '17542848241736816714',
+     data: {} },
+  _events: { error: [Function] } }
+debug: websocket writing 3:::{"name":"ncs","key":"hello","value":"hello"}
+debug: emitting heartbeat for client 17542848241736816714
+debug: websocket writing 2::
+debug: set heartbeat timeout for client 17542848241736816714
+debug: got heartbeat packet
+debug: cleared heartbeat timeout for client 17542848241736816714
+debug: set heartbeat interval for client 17542848241736816714
+debug: emitting heartbeat for client 17542848241736816714
+debug: websocket writing 2::
+debug: set heartbeat timeout for client 17542848241736816714
+debug: got heartbeat packet
+debug: cleared heartbeat timeout for client 17542848241736816714
+debug: set heartbeat interval for client 17542848241736816714
+debug: emitting heartbeat for client 17542848241736816714
+debug: websocket writing 2::
+debug: set heartbeat timeout for client 17542848241736816714
+debug: got heartbeat packet
+debug: cleared heartbeat timeout for client 17542848241736816714
+debug: set heartbeat interval for client 17542848241736816714

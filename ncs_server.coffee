@@ -4,7 +4,7 @@ path = require 'path'
 socketio = require 'socket.io'
 io = null
 
-# Main entry point of the program. Called at end of file so that all the funcitons will be available when this runs.
+# Main entry point of the program. Called at end of file so that all the functions will be available when this runs.
 start = ()->
 	app = http.createServer(httpHandler)
 	app.listen 8080
@@ -45,10 +45,10 @@ httpHandler = (_req, _res)->
 	console.log "file:", filePath
 
 	filePath = fs.realpathSync(filePath)
-	if (!startsWith __dirname + '/test/', filePath) && (!startsWith __dirname + '/client/', filePath)
-		console.log 'forbidden'
-		_res.writeHead 403
-		return _res.end 'forbidden'
+	if (!startsWith __dirname + '/examples/', filePath) && (!startsWith __dirname + '/client/', filePath)
+		console.log 'bad path: redirecting'
+		_res.writeHead 302, {'Location':'/examples/index.html'}
+		return _res.end()
 
 	fs.readFile filePath, (_err, _data)->
 		if _err

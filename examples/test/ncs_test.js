@@ -3,7 +3,7 @@
 
   $(function() {
     console.log("start");
-    ncs.connect('localhost:8080', "ncs_test");
+    ncs.connect(location.host, "ncs_test");
     ncs.onreceive(function(_key, _value) {
       var time;
       if (_key === 'hello') screenLog('received hello: ' + _value);

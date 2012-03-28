@@ -16,7 +16,7 @@
     dashboard.addWidgetClass(WidgetBoolean);
     dashboard.addWidgetClass(WidgetString);
     dashboard.addWidgetClass(Widget);
-    ncs.connect('localhost:8080', 'ncs_test');
+    ncs.connect(location.host, 'ncs_monitor');
     ncs.onreceive(function(_key, _value) {
       return dashboard.receive(_key, _value);
     });

@@ -1,7 +1,7 @@
 #start
 $ ()->
 	console.log "start"
-	ncs.connect 'localhost:8080', "ncs_test"
+	ncs.connect location.host, "ncs_test"
 	
 	ncs.onreceive (_key, _value)->
 		if _key == 'hello'

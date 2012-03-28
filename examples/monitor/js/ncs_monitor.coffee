@@ -15,7 +15,7 @@ $ ()->
 	#new LocalSender(dashboard)
 
 	#connect to ncs
-	ncs.connect 'localhost:8080', 'ncs_test'
+	ncs.connect location.host, 'ncs_monitor'
 
 	ncs.onreceive (_key, _value)->
 		dashboard.receive _key, _value

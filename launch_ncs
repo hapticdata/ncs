@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#nohup runs the command without hangup signals ignored; node will keep running when you log out
+#&> routes std and err output to a log file
+#& at the end launches it in the background
+
+nohup node ncs_server.js &>ncs_server.log &
+echo "okay."
